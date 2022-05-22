@@ -29,7 +29,7 @@ class StaticRoute(NetBoxModel):
         on_delete=models.PROTECT,
         null=True
     )
-    next_hop = models.GenericIPAddresField() # will want to add validators here to ensure v4 next-hop for v4 prefix and v6 next-hop for v6 prefix
+    next_hop = models.GenericIPAddressField() # will want to add validators here to ensure v4 next-hop for v4 prefix and v6 next-hop for v6 prefix
     distance = models.PositiveIntegerField() # will want to add validators to limit integer
     comments = models.TextField(
         blank=True
