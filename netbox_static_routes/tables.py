@@ -3,6 +3,9 @@ from netbox.tables import NetBoxTable, ChoiceFieldColumn
 from .models import StaticRoute
 
 class StaticRouteTable(NetBoxTable):
+    pk = tables.Column(
+        linkify=True
+    )
     destination_prefix = tables.Column(
         linkify=True
     )
