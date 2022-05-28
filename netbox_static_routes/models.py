@@ -37,6 +37,7 @@ class StaticRoute(NetBoxModel):
 
     class Meta:
         verbose_name_plural = 'Static Routes'
+        ordering = ('device', 'vrf', 'destination_prefix', 'next_hop')
         unique_together = ['device', 'vrf', 'destination_prefix']
 
     def __str__(self):
