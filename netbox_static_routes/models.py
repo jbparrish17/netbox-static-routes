@@ -41,7 +41,7 @@ class StaticRoute(NetBoxModel):
         unique_together = ['device', 'vrf', 'destination_prefix']
 
     def __str__(self):
-        return f'{self.device}:{self.name}'
+        return f'{self.device}:{self.vrf}:{self.destination_prefix}'
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_static_routes:staticroute', args=[self.pk])
