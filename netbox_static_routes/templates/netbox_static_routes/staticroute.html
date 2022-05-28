@@ -12,15 +12,21 @@
             </tr>
             <tr>
               <th scope="row">Site</th>
-              <td>{{ object.site }}</td>
+              <td>
+                <a href="{{ object.site.get_absolute_url }}">{{ object.site }}</a>
+              </td> 
             </tr>  
             <tr>
               <th scope="row">Device</th>
-              <td>{{ object.device }}</td>
+              <td>
+                <a href="{{ object.device.get_absolute_url }}">{{ object.device }}</a>
+              </td>
             </tr>
             <tr>
               <th scope="row">VRF</th>
-              <td>{{ object.vrf }}</td>
+              <td>
+                <a href="{{ object.vrf.get_absolute_url }}">{{ object.vrf }}</a>
+              </td>
             </tr>
             <tr>
               <th scope="row">Next Hop</th>
