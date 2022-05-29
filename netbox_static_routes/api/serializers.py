@@ -15,7 +15,7 @@ class NestedStaticRouteSerializer(WritableNestedSerializer):
 
 class StaticRouteSerializer(NetBoxModelSerializer):
     url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_access_lists-api:staticroute-detail'
+        view_name='plugins-api:netbox_static_routes-api:staticroute-detail'
     )
 
     class Meta:
