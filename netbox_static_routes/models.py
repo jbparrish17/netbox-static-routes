@@ -1,7 +1,23 @@
 #from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MaxValueValidator, MinValueValidator
 from netbox.models import NetBoxModel
+from utilities.choices import ChoiceSet
+
+# future use
+class NextHopTypeChoices(ChoiceSet):
+    key = 'StaticRoute.next_hop_type'
+
+    NH_TYPE_IP_ADDRESS = ('ip_address', 'IP Address')
+    NH_TYPE_INTERFACE = ('interface', 'Interface')
+    NH_TYPE_VRF = ('vrf', 'VRF')
+
+    CHOICES = [
+        NH_TYPE_IP_ADDRESS,
+        NH_TYPE_INTERFACE,
+        NH_TYPE_VRF
+    ]
 
 class StaticRoute(NetBoxModel):
     site = models.ForeignKey(
@@ -14,6 +30,7 @@ class StaticRoute(NetBoxModel):
     device = models.ForeignKey(
         to='dcim.Device',
         on_delete=models.PROTECT,
+        related_name='+',
         null=True,
     )
     vrf = models.ForeignKey(
@@ -29,8 +46,17 @@ class StaticRoute(NetBoxModel):
         on_delete=models.PROTECT,
         null=True
     )
-    next_hop = models.GenericIPAddressField() # will want to add validators here to ensure v4 next-hop for v4 prefix and v6 next-hop for v6 prefix
-    distance = models.PositiveIntegerField() # will want to add validators to limit integer
+    next_hop = models.GenericIPAddressField(
+        null=True,
+    )
+    distance = models.PositiveIntegerField(
+        default=1,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(255)
+        ],
+        verbose_name='Administrative distance'
+    )
     comments = models.TextField(
         blank=True
     )
