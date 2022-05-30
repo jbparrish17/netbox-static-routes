@@ -10,6 +10,7 @@ class StaticRouteTable(NetBoxTable):
             ('plugins:netbox_static_routes:staticroute', {'pk': tables.A('pk')})
         )
     )
+    next_hop = tables.Column()
     site = tables.Column(
         linkify=True
     )
@@ -23,4 +24,4 @@ class StaticRouteTable(NetBoxTable):
     class Meta(NetBoxTable.Meta):
         model = StaticRoute
         fields = ('pk', 'id', 'site', 'device', 'vrf', 'destination_prefix', 'next_hop', 'distance', 'comments')
-        default_columns = ('pk', 'destination_prefix', 'site', 'device', 'vrf')
+        default_columns = ('pk', 'destination_prefix', 'next_hop', 'site', 'device', 'vrf')
