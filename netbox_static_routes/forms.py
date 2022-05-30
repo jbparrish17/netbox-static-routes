@@ -1,7 +1,7 @@
 from dcim.models import Site, Device
 from ipam.models import Prefix, VRF
 from django import forms
-from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm
+from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm, NetBoxModelBulkEditForm
 from .models import StaticRoute
 from utilities.forms.fields import CommentField, DynamicModelChoiceField
 
@@ -56,4 +56,14 @@ class StaticRouteFilterForm(NetBoxModelFilterSetForm):
         required=False
     )
 
-# consider adding a bulk edit form
+class StaticRouteBulkEditForm(NetBoxModelBulkEditForm):
+    model = StaticRoute
+    pk = forms.ModelMultipleChoiceField(
+        queryset=StaticRoute.objects.all(),
+        widget=forms.MultipleHiddenInput
+    )
+    distance = forms.IntegerField(
+        max_value=255,
+        min_value=1,
+        required=False
+    )
