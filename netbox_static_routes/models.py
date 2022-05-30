@@ -2,6 +2,7 @@
 from django.db import models
 from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.postgres.fields import ArrayField
 from netbox.models import NetBoxModel
 from utilities.choices import ChoiceSet
 
@@ -44,10 +45,9 @@ class StaticRoute(NetBoxModel):
     destination_prefix = models.ForeignKey(
         to='ipam.Prefix',
         on_delete=models.PROTECT,
-        null=True
     )
-    next_hop = models.GenericIPAddressField(
-        null=True,
+    next_hop = ArrayField(
+        base_field=models.GenericIPAddressField(),
     )
     distance = models.PositiveIntegerField(
         default=1,
