@@ -3,7 +3,7 @@ from .version import __version__
 
 class NetBoxStaticRoutesConfig(PluginConfig):
     name = 'netbox_static_routes'
-    verbose_name = 'Netbox Static Routes'
+    verbose_name = 'Static Routes'
     description = 'Manage static routes in Netbox'
     version = __version__
     author = 'Joshua Parrish'
