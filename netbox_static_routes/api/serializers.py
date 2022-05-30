@@ -15,11 +15,11 @@ class NestedStaticRouteSerializer(WritableNestedSerializer):
 
 class StaticRouteSerializer(NetBoxModelSerializer):
     url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_access_lists-api:staticroute-detail'
+        view_name='plugins-api:netbox_static_routes-api:staticroute-detail'
     )
 
     class Meta:
         model = StaticRoute
         fields = (
-            'id', 'display', 'destination_prefix', 'next_hop', 'site', 'device', 'vrf', 'comments', 'tags', 'custom_fields', 'created', 'last_updated'
+            'id', 'url', 'display', 'destination_prefix', 'next_hop', 'site', 'device', 'vrf', 'comments', 'tags', 'custom_fields', 'created', 'last_updated'
         )
