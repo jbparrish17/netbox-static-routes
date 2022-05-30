@@ -1,17 +1,14 @@
 import django_tables2 as tables
 from netbox.tables import NetBoxTable, ChoiceFieldColumn
 from .models import StaticRoute
+from django.urls import path
 
 
 class StaticRouteTable(NetBoxTable):
-    pk = tables.Column(
-        linkify=(
-            'plugins:netbox_static_routes:staticroute-detail',
-            kwargs={'pk': A.id}
-        )
-    )
     destination_prefix = tables.Column(
-        linkify=True
+        linkify=(
+            ('plugins:netbox_static_routes:staticroute', {'pk': tables.A('pk')})
+        )
     )
     site = tables.Column(
         linkify=True
