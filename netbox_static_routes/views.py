@@ -14,6 +14,16 @@ class StaticRouteEditView(generic.ObjectEditView):
     queryset = models.StaticRoute.objects.all()
     form = forms.StaticRouteForm
 
+class StaticRouteBulkEditView(generic.BulkEditView):
+    queryset = models.StaticRoute.objects.all()
+    table = tables.StaticRouteTable
+    form = forms.StaticRouteBulkEditForm
+    filterset = filtersets.StaticRouteFilterSet
+
 class StaticRouteDeleteView(generic.ObjectDeleteView):
     queryset = models.StaticRoute.objects.all()
-    
+
+class StaticRouteBulkDeleteView(generic.BulkDeleteView):
+    queryset = models.StaticRoute.objects.all()
+    table = tables.StaticRouteTable
+
