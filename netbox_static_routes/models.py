@@ -45,9 +45,11 @@ class StaticRoute(NetBoxModel):
     destination_prefix = models.ForeignKey(
         to='ipam.Prefix',
         on_delete=models.PROTECT,
+        null=True
     )
     next_hop = ArrayField(
         base_field=models.GenericIPAddressField(),
+        null=True
     )
     distance = models.PositiveIntegerField(
         default=1,
