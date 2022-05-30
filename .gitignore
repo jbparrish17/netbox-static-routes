@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# migrations pycache
+netbox_static_routes/migrations/__pycache__/
