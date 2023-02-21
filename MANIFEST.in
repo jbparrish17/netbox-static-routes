@@ -1,0 +1,1 @@
+recursive-include netbox_static_routes/templates *.html
