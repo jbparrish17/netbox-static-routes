@@ -11,7 +11,7 @@ class NetBoxStaticRoutesConfig(PluginConfig):
     base_url = 'static-routes'
     required_settings = []
     min_version = '3.2.0'
-    max_version = '3.2.99'
+    max_version = '3.4.99'
     default_settings = {}
 
 config = NetBoxStaticRoutesConfig
